@@ -1,0 +1,18 @@
+# Render blueprint. With this file in the repo root, Render configures the
+# service automatically instead of you filling the dashboard in by hand.
+services:
+  - type: web
+    name: aerocalc
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # One worker: the free instance has 512 MB of RAM and NumPy, SciPy and
+    # Matplotlib together take a sizeable share of it, so a second worker
+    # risks the out-of-memory killer. Threads give concurrency instead.
+    # The long timeout covers calculators that render several charts.
+    startCommand: gunicorn wsgi:application --workers 1 --threads 4 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.3"
+      - key: MPLCONFIGDIR
+        value: /tmp/matplotlib

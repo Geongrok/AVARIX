@@ -1,0 +1,8 @@
+Flask>=3.0
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+
+# Production WSGI server. Not needed to run locally with `python app.py`,
+# but required by Render, Railway, Fly.io and similar hosts.
+gunicorn>=21.2

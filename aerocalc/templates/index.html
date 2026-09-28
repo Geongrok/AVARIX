@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AeroCalc — aerospace engineering calculators</title>
+<meta name="description" content="{{ total }} aerospace engineering calculators across nine disciplines, with server-computed results, charts and gas tables.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=9">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Calculators</button>
+    <a href="/" class="wordmark" style="text-decoration:none">Aero<span>Calc</span></a>
+    <div class="masthead-rule" aria-hidden="true"></div>
+    <div class="masthead-meta">{{ total }} calculators · {{ catalog|length }} disciplines</div>
+  </div>
+  <div class="station-strip" aria-hidden="true"></div>
+</header>
+
+<div class="shell">
+
+  <nav class="sidebar" id="sidebar" aria-label="Calculators">
+    <div class="search-wrap">
+      <input type="search" id="search" class="search-input"
+             placeholder="Search calculators…" autocomplete="off"
+             aria-label="Search calculators">
+      <div class="search-count" id="search-count">{{ total }} calculators</div>
+    </div>
+
+    <div id="cat-list">
+      {% for group in catalog %}
+      <section class="cat" data-category="{{ group.category }}">
+        <div class="cat-head">
+          <span class="cat-index">{{ '%02d'|format(loop.index) }}</span>
+          <span class="cat-name">{{ group.category }}</span>
+          <span class="cat-count">{{ group.calculators|length }}</span>
+        </div>
+        <ul class="cat-list">
+          {% for c in group.calculators %}
+          <li>
+            <button class="calc-link" data-id="{{ c.id }}"
+                    data-search="{{ (c.name ~ ' ' ~ c.summary ~ ' ' ~ c.tags|join(' ') ~ ' ' ~ group.category)|lower }}">
+              {{ c.name }}
+            </button>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endfor %}
+    </div>
+    <p class="no-results" id="no-results" hidden>No calculator matches that search.</p>
+  </nav>
+
+  <main class="main" id="main">
+
+    <section class="welcome" id="welcome">
+      <h1>Aerospace calculations,<br>worked out properly.</h1>
+      <p class="lede">
+        {{ total }} calculators spanning {{ catalog|length }} disciplines. Every
+        result is computed on the server in double precision — inverse problems
+        are solved by bracketed root-finding rather than curve fits, and each
+        answer arrives with the chart that puts it in context.
+      </p>
+
+      <div class="discipline-grid">
+        {% for group in catalog %}
+        <button class="discipline-card" data-first="{{ group.calculators[0].id }}">
+          <div class="dc-top">
+            <span class="dc-index">{{ '%02d'|format(loop.index) }}</span>
+            <span class="dc-count">{{ group.calculators|length }}</span>
+          </div>
+          <h3>{{ group.category }}</h3>
+          <p>{{ group.blurb }}</p>
+        </button>
+        {% endfor %}
+      </div>
+    </section>
+
+    <div id="calculator" hidden>
+      <header class="calc-header">
+        <div class="eyebrow" id="calc-category"></div>
+        <h1 id="calc-name"></h1>
+        <p class="summary" id="calc-summary"></p>
+        <p class="description" id="calc-description"></p>
+      </header>
+
+      <div class="workspace">
+        <form class="panel form-panel" id="calc-form" novalidate>
+          <div class="panel-title">Inputs</div>
+          <div class="form-scroll" id="form-fields"></div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="calc-submit">Calculate</button>
+            <button type="button" class="btn btn-secondary" id="calc-reset">Reset</button>
+          </div>
+        </form>
+
+        <section class="results" id="results" aria-live="polite">
+          <div class="results-placeholder">
+            <div class="ph-mark">Awaiting inputs</div>
+            Set the values you know and select Calculate.
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}?v=9"></script>
+<script src="{{ url_for('static', filename='js/scientific_calc.js') }}?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.DS_Store
+*.egg-info/
+.pytest_cache/
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE / editor files
+.vscode/
+.idea/
+
+# Cloudflare Tunnel executable
+cloudflared.exe
