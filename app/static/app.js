@@ -48,6 +48,79 @@
 
     let isSending = false;
     let showSources = true;
+    let currentUser = null;
+
+    /* Account profile and logout */
+    function initialsFromName(name) {
+        const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+        if (!parts.length) return "U";
+        if (parts.length === 1) return Array.from(parts[0])[0].toUpperCase();
+        return (Array.from(parts[0])[0] + Array.from(parts[parts.length - 1])[0]).toUpperCase();
+    }
+
+    function setProfile(user) {
+        currentUser = user || null;
+        const initials = initialsFromName(currentUser?.name);
+        const triggerInitials = document.getElementById("profile-initials");
+        const summaryInitials = document.getElementById("profile-summary-initials");
+        const name = document.getElementById("profile-name");
+        const email = document.getElementById("profile-email");
+        if (triggerInitials) triggerInitials.textContent = initials;
+        if (summaryInitials) summaryInitials.textContent = initials;
+        if (name) name.textContent = currentUser?.name || "User";
+        if (email) email.textContent = currentUser?.email || "";
+    }
+
+    async function loadCurrentUser() {
+        try {
+            const response = await fetch("/api/auth/me", { credentials: "same-origin", cache: "no-store" });
+            if (response.status === 401) { window.location.replace("/"); return; }
+            if (!response.ok) throw new Error("Unable to load account");
+            setProfile(await response.json());
+        } catch (error) {
+            console.error("AVARIX account check failed:", error);
+            window.location.replace("/");
+        }
+    }
+
+    function initializeProfileMenu() {
+        const trigger = document.getElementById("profile-trigger");
+        const dropdown = document.getElementById("profile-dropdown");
+        const logout = document.getElementById("logout-btn");
+        if (!trigger || !dropdown || !logout) return;
+        const closeMenu = () => {
+            dropdown.hidden = true;
+            trigger.setAttribute("aria-expanded", "false");
+        };
+        trigger.addEventListener("click", event => {
+            event.stopPropagation();
+            const opening = dropdown.hidden;
+            dropdown.hidden = !opening;
+            trigger.setAttribute("aria-expanded", String(opening));
+        });
+        document.addEventListener("click", event => {
+            if (!event.target.closest("#profile-menu")) closeMenu();
+        });
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") { closeMenu(); trigger.focus(); }
+        });
+        logout.addEventListener("click", async () => {
+            logout.disabled = true;
+            try {
+                const response = await fetch("/api/auth/logout", {
+                    method: "POST", credentials: "same-origin",
+                    headers: { "Content-Type": "application/json" }, body: "{}"
+                });
+                if (!response.ok) throw new Error("Logout failed");
+                sessionStorage.removeItem("intellex_session_id");
+                window.location.replace("/");
+            } catch (error) {
+                console.error("AVARIX logout failed:", error);
+                logout.disabled = false;
+                alert("Unable to log out right now. Please try again.");
+            }
+        });
+    }
 
     /* --------------------------------------------------------
        Utility
@@ -1410,8 +1483,8 @@
 
         wrapper.innerHTML = `
             <div class="message-inner">
-                <div class="message-avatar">
-                    You
+                <div class="message-avatar user-avatar" aria-label="Your profile">
+                    ${escapeHtml(initialsFromName(currentUser?.name))}
                 </div>
 
                 <div class="message-bubble">
@@ -2222,6 +2295,9 @@
             String(showSources)
         );
     }
+
+    initializeProfileMenu();
+    loadCurrentUser();
 
     checkHealth();
 

@@ -45,6 +45,7 @@
       </div>
 
       <div class="topbar-actions">
+        <a class="account-link" href="/login">Account <span aria-hidden="true">↗</span></a>
         <span id="status" class="status">
           <i id="status-dot"></i>
           <span id="status-text">Checking knowledge base…</span>
@@ -54,6 +55,23 @@
           <span class="rebuild-icon">↻</span>
           <span class="rebuild-label">Rebuild index</span>
         </button>
+        <div class="profile-menu" id="profile-menu">
+          <button id="profile-trigger" class="profile-trigger" type="button"
+                  aria-label="Open account menu" aria-haspopup="true" aria-expanded="false">
+            <span id="profile-initials" class="profile-initials">U</span>
+          </button>
+          <div id="profile-dropdown" class="profile-dropdown" hidden>
+            <div class="profile-summary">
+              <span id="profile-summary-initials" class="profile-initials profile-initials-small">U</span>
+              <div class="profile-identity">
+                <strong id="profile-name">User</strong>
+                <small id="profile-email"></small>
+              </div>
+            </div>
+            <div class="profile-divider"></div>
+            <button id="logout-btn" class="profile-logout" type="button"><span aria-hidden="true">↪</span> Log out</button>
+          </div>
+        </div>
       </div>
     </header>
 
