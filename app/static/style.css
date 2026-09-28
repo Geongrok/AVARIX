@@ -1187,3 +1187,131 @@ button:focus-visible, textarea:focus-visible { outline: 2px solid rgba(127, 168,
         white-space: normal;
     }
 }
+
+
+/* =========================================================
+   MOBILE CHAT FLOW — final override
+   The workspace is the single scroll container on small screens.
+   ========================================================= */
+@media (max-width: 700px) {
+  html, body {
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  .shell {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .workspace {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+  }
+
+  .conversation {
+    position: relative;
+    order: 1;
+    display: flex;
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .chat {
+    display: flex;
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    overflow: visible;
+    padding: 14px 10px 22px;
+    scroll-behavior: auto;
+  }
+
+  .welcome {
+    margin: 18px auto;
+  }
+
+  .visual-panel,
+  .visual-panel.visible {
+    position: relative !important;
+    inset: auto !important;
+    z-index: auto;
+    order: 2;
+    display: none;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0;
+    height: auto !important;
+    max-height: none !important;
+    flex: 0 0 auto !important;
+    margin: 0;
+    padding: 0;
+    transform: none !important;
+    opacity: 1;
+    overflow: visible;
+    border: 0;
+    border-top: 1px solid #203147;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    transition: none;
+  }
+
+  .visual-panel.visible {
+    display: block;
+  }
+
+  .visual-content {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    padding: 12px 10px 22px;
+    overflow: visible;
+  }
+
+  .visual-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .visual-card,
+  .visual-image-wrap {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .visual-image-wrap img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .brand-copy .developer-credit {
+    max-width: 190px;
+    font-size: 8px;
+    line-height: 1.15;
+    white-space: normal;
+  }
+}

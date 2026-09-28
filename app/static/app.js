@@ -1759,10 +1759,20 @@
                 return;
             }
 
-            chat.scrollTo({
-                top: chat.scrollHeight,
-                behavior: "smooth"
-            });
+            const mobile = window.matchMedia("(max-width: 700px)").matches;
+            const workspace = document.querySelector(".workspace");
+
+            if (mobile && workspace) {
+                workspace.scrollTo({
+                    top: workspace.scrollHeight,
+                    behavior: "smooth"
+                });
+            } else {
+                chat.scrollTo({
+                    top: chat.scrollHeight,
+                    behavior: "smooth"
+                });
+            }
         });
     }
 
@@ -1804,10 +1814,7 @@
             );
         }
 
-        if (
-            input &&
-            !questionOverride
-        ) {
+        if (input) {
             input.value = "";
             updateInputState();
         }
@@ -1816,6 +1823,9 @@
 
         const typing =
             showTyping();
+
+        // Keep the active question / thinking indicator in view on mobile.
+        scrollToBottom();
 
         /*
          * Keep the right-side panel clean while a new
@@ -2018,13 +2028,7 @@
                         return;
                     }
 
-                    if (input) {
-                        input.value =
-                            question;
-
-                        updateInputState();
-                    }
-
+                    // Submit the sample directly. Do not leave it in the composer.
                     sendQuestion(question);
                 }
             );
