@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "documents": {
+    "496111559-Aerospace-Engineering-GATE-Exam-Subject-Review-Notes-With-Simplified.pdf": {
+      "filename": "496111559-Aerospace-Engineering-GATE-Exam-Subject-Review-Notes-With-Simplified.pdf",
+      "doc_id": "DOC-F5FE068B74",
+      "confidential": false,
+      "hash": "4ccbf634078a096486373a7681cd218295da070b9d351634b7acbac5be89e31c",
+      "size": 8976942,
+      "mtime": 1789030153
+    },
+    "CONF-001 module 1.pdf": {
+      "filename": "CONF-001 module 1.pdf",
+      "doc_id": "CONF-001",
+      "confidential": true,
+      "hash": "46388a4292f76cd75272f125a1cb063223b45d57c178d1f178d685a22cf838ad",
+      "size": 2643239,
+      "mtime": 1789027509
+    },
+    "CONF-002 module 2.pdf": {
+      "filename": "CONF-002 module 2.pdf",
+      "doc_id": "CONF-002",
+      "confidential": true,
+      "hash": "75dec6b9a1e27602cb4ce343a1465c8f50e04a9c498b9aac15612f8c377ed684",
+      "size": 2204773,
+      "mtime": 1789027525
+    },
+    "CONF-003 module 3.pdf.pdf": {
+      "filename": "CONF-003 module 3.pdf.pdf",
+      "doc_id": "CONF-003",
+      "confidential": true,
+      "hash": "5ef02f00e769b5e0613ad2baf25c3aec324428c61dcc2aa09d485b55ab57e25a",
+      "size": 1061641,
+      "mtime": 1789027539
+    },
+    "CONF-004 module 4.pdf.pdf": {
+      "filename": "CONF-004 module 4.pdf.pdf",
+      "doc_id": "CONF-004",
+      "confidential": true,
+      "hash": "58b089e3b88f87f82703e49d50b5364e821a0f68d4a7750b69cc9813a35cf93e",
+      "size": 4302584,
+      "mtime": 1789027547
+    },
+    "CONF-005 module 5.pdf.pdf": {
+      "filename": "CONF-005 module 5.pdf.pdf",
+      "doc_id": "CONF-005",
+      "confidential": true,
+      "hash": "fe65ec53194b782b956e1381923851b781779d3b438c1c2e3f93402ca15e12ca",
+      "size": 19301691,
+      "mtime": 1789027564
+    },
+    "CONF-006 module 6.pdf.pdf": {
+      "filename": "CONF-006 module 6.pdf.pdf",
+      "doc_id": "CONF-006",
+      "confidential": true,
+      "hash": "1a84d1dbe2426d0a00d78074780fdcc6e00140ea924c36177c8180480cfc1740",
+      "size": 2028613,
+      "mtime": 1789027584
+    },
+    "CONF-007 module 7.pdf.pdf": {
+      "filename": "CONF-007 module 7.pdf.pdf",
+      "doc_id": "CONF-007",
+      "confidential": true,
+      "hash": "9551cf2edd0b053d0c6bdb0510361687c174117fa49573e4106d95072b0f75cd",
+      "size": 3225311,
+      "mtime": 1789027620
+    },
+    "CONF-008 module 8.pdf.pdf": {
+      "filename": "CONF-008 module 8.pdf.pdf",
+      "doc_id": "CONF-008",
+      "confidential": true,
+      "hash": "186fbb4623b6a3dacd4b07e8e9dda1a311332810b38dd3964258380c72541fd8",
+      "size": 3326732,
+      "mtime": 1789027628
+    },
+    "CONF-009 module 9.pdf.pdf": {
+      "filename": "CONF-009 module 9.pdf.pdf",
+      "doc_id": "CONF-009",
+      "confidential": true,
+      "hash": "cd2a076f731f9a261c68c4f5665f81b5d0fefbc409a0872e3843a4e3bd18490f",
+      "size": 2972987,
+      "mtime": 1789027636
+    },
+    "GATE-AEROSPACE-Formulas.pdf": {
+      "filename": "GATE-AEROSPACE-Formulas.pdf",
+      "doc_id": "DOC-EFB932DE85",
+      "confidential": false,
+      "hash": "cb690b97380b2ca1e95930b19fe6ec2a38be161db4f44485291653a8710628f2",
+      "size": 2727561,
+      "mtime": 1789030153
+    }
+  }
+}

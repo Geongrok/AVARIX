@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AVARIX — Aerospace Intelligence & Knowledge Platform</title>
+  <meta name="description" content="AVARIX — Aerospace Intelligence & Knowledge Platform">
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"], ["$", "$"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+        processEscapes: true
+      },
+      svg: { fontCache: "global" }
+    };
+  </script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <div class="shell">
+
+    <!-- =========================================================
+         HEADER
+         ========================================================= -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">
+          <img
+            class="brand-logo"
+            src="/static/assets/avarix-emblem.png"
+            alt="AVARIX"
+          >
+        </div>
+
+        <div class="brand-copy">
+          <h1>AVARIX</h1>
+          <p>Aerospace Intelligence &amp; Knowledge Platform</p>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <span id="status" class="status">
+          <i id="status-dot"></i>
+          <span id="status-text">Checking knowledge base…</span>
+        </span>
+
+        <button id="rebuild-btn" class="rebuild" type="button">
+          <span class="rebuild-icon">↻</span>
+          <span class="rebuild-label">Rebuild index</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- =========================================================
+         MAIN WORKSPACE
+         IMPORTANT: conversation is FIRST, visual panel is SECOND.
+         This is what keeps related visuals on the right.
+         ========================================================= -->
+    <main class="workspace">
+
+      <section class="conversation">
+        <div id="chat" class="chat">
+
+          <!-- Welcome screen -->
+          <section id="welcome" class="welcome">
+            <div class="welcome-emblem">
+              <img
+                class="welcome-logo"
+                src="/static/assets/avarix-emblem.png"
+                alt="AVARIX"
+              >
+            </div>
+
+            <div class="welcome-kicker">
+              AEROSPACE INTELLIGENCE &amp; KNOWLEDGE PLATFORM
+            </div>
+
+            <h2>Ask AVARIX a question</h2>
+
+            <p class="welcome-description">
+              Search the aerospace knowledge base first, use AeroCalc for
+              engineering calculations, and fall back to web research when
+              the required information is not available locally.
+            </p>
+
+            <div class="capabilities">
+              <div class="capability">
+                <div class="capability-icon">📚</div>
+                <div>
+                  <strong>Knowledge Base</strong>
+                  <small>Curated aerospace references</small>
+                </div>
+              </div>
+
+              <div class="capability">
+                <div class="capability-icon">🧮</div>
+                <div>
+                  <strong>AeroCalc</strong>
+                  <small>Engineering calculations</small>
+                </div>
+              </div>
+
+              <div class="capability">
+                <div class="capability-icon">🌐</div>
+                <div>
+                  <strong>Web Research</strong>
+                  <small>External technical sources</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="quick-heading">Try a question</div>
+
+            <div class="quick">
+              <button type="button" data-question="What is Mach number?">
+                <span class="quick-icon">M</span>
+                <span>What is Mach number?</span>
+                <span class="quick-arrow">→</span>
+              </button>
+
+              <button type="button" data-question="What is an airfoil?">
+                <span class="quick-icon">A</span>
+                <span>What is an airfoil?</span>
+                <span class="quick-arrow">→</span>
+              </button>
+
+              <button type="button" data-question="What is finite element analysis?">
+                <span class="quick-icon">F</span>
+                <span>What is finite element analysis?</span>
+                <span class="quick-arrow">→</span>
+              </button>
+
+              <button type="button" data-question="How is lift generated?">
+                <span class="quick-icon">L</span>
+                <span>How is lift generated?</span>
+                <span class="quick-arrow">→</span>
+              </button>
+            </div>
+
+            <div class="welcome-footer">
+              <span class="footer-line"></span>
+              <span>EXPLORE • UNDERSTAND • ENGINEER • HIGHER</span>
+              <span class="footer-line"></span>
+            </div>
+          </section>
+
+        </div>
+      </section>
+
+      <!-- =======================================================
+           RELATED VISUALS
+           Hidden automatically until app.js receives usable
+           visual data.
+           ======================================================= -->
+      <aside id="visual-panel" class="visual-panel" aria-label="Related visuals">
+        <div id="visual-content" class="visual-content"></div>
+      </aside>
+
+    </main>
+
+    <!-- =========================================================
+         COMPOSER
+         ========================================================= -->
+    <form id="form" class="composer" autocomplete="off">
+      <div class="composer-main">
+        <textarea
+          id="input"
+          rows="1"
+          maxlength="12000"
+          placeholder="Ask an aerospace question…"
+          aria-label="Ask an aerospace question"
+        ></textarea>
+
+        <div class="composer-meta">
+          <div class="composer-tools">
+            <button
+              id="source-toggle"
+              class="composer-tool active"
+              type="button"
+              aria-pressed="true"
+              title="Show or hide sources"
+            >
+              <span class="tool-icon">◫</span>
+              <span>Sources</span>
+            </button>
+
+            <span class="tool-divider"></span>
+
+            <span class="composer-hint">
+              Enter to send
+              <span class="hint-divider">•</span>
+              Shift + Enter for new line
+            </span>
+          </div>
+
+          <span id="char-count" class="input-counter">
+            0 / 12,000
+          </span>
+        </div>
+      </div>
+
+      <button
+        id="send"
+        class="send"
+        type="button"
+        aria-label="Send question"
+        title="Send question"
+      >
+        <span class="send-icon">➤</span>
+      </button>
+    </form>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

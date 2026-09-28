@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AVARIX | Account access</title>
+  <link rel="stylesheet" href="/static/auth.css">
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="visual-side" aria-label="AVARIX introduction">
+      <div class="brand"><img src="/static/assets/avarix-emblem.png" alt=""><span>AVARIX</span></div>
+      <div class="visual-copy"><div class="eyebrow"><span class="pulse"></span> AEROSPACE INTELLIGENCE PLATFORM</div>
+        <h1>Engineering<br><em>starts with</em><br>curiosity.</h1>
+        <p>Your aerospace knowledge workspace—research, calculations, and technical insight in one place.</p>
+      </div>
+      <div class="visual-footer"><span>KNOWLEDGE · ANALYSIS · DISCOVERY</span><span>01 / 03</span></div>
+      <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit-dot"></div>
+    </section>
+    <section class="form-side">
+      <div class="mobile-brand"><img src="/static/assets/avarix-emblem.png" alt=""> AVARIX</div>
+      <div class="form-wrap">
+        <div class="form-heading"><div class="eyebrow">WELCOME TO AVARIX</div><h2 id="form-title">Sign in to your account</h2><p id="form-subtitle">Continue your aerospace research.</p></div>
+        <div class="tabs" role="tablist"><button class="tab active" id="signin-tab" type="button" role="tab" aria-selected="true">Sign in</button><button class="tab" id="signup-tab" type="button" role="tab" aria-selected="false">Create account</button></div>
+        <form id="auth-form" novalidate>
+          <div class="field" id="name-field" hidden><label for="full-name">Full name</label><input id="full-name" name="name" type="text" autocomplete="name" placeholder="Your name"></div>
+          <div class="field"><label for="email">College email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@kcgcollege.com" required><small>Use your @kcgcollege.com address.</small></div>
+          <div class="field"><div class="label-row"><label for="password">Password</label><button class="text-button" id="forgot" type="button">Forgot password?</button></div><div class="password-wrap"><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button class="show-password" type="button" id="toggle-password" aria-label="Show password">Show</button></div><small id="password-hint" hidden>Use at least 8 characters.</small></div>
+          <div class="field" id="confirm-field" hidden><label for="confirm-password">Confirm password</label><input id="confirm-password" type="password" autocomplete="new-password" placeholder="Re-enter your password"></div>
+          <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+          <button class="submit" type="submit"><span id="submit-label">Sign in</span><span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="form-bottom"><span class="lock">▣</span> Your account is for the KCG College community.</div>
+        <a class="back-link" href="/">← Back to AVARIX</a>
+      </div>
+      <div class="legal">AVARIX · Aerospace Intelligence &amp; Knowledge Platform</div>
+    </section>
+  </main>
+  <script src="/static/auth.js"></script>
+</body></html>
