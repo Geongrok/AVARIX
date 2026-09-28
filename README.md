@@ -51,7 +51,7 @@
 
 **Every question is independent. Intellex does not use previous chat messages as hidden context for retrieval or answering.**
 
-## Features
+Features
 
 - PDF, DOCX, PPTX, XLSX, TXT, Markdown and CSV ingestion.
 - BM25 + ChromaDB retrieval.
@@ -69,7 +69,7 @@
 - Server-side API-key handling.
 - Basic server-side rate limiting for public deployments.
 
-## Repository structure
+Repository structure
 
 ```text
 Intellex/
