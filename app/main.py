@@ -93,6 +93,19 @@ def signup_page(request: Request): return home(request)
 def app_page(request: Request):
     return FileResponse(STATIC_DIR/"index.html") if current_user(request) else RedirectResponse("/", 303)
 
+
+@app.get("/service-worker.js")
+def service_worker():
+    return FileResponse(
+        STATIC_DIR / "service-worker.js",
+        media_type="application/javascript",
+        headers={
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Pragma": "no-cache",
+            "Expires": "0",
+        },
+    )
+
 @app.post("/api/auth/signup")
 def signup(req: SignupRequest, request: Request):
     email=(req.email or "").strip().lower(); name=(req.name or "").strip(); password=req.password or ""

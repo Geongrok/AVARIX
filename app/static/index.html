@@ -20,7 +20,14 @@
 
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <link rel="stylesheet" href="/static/style.css">
-</head>
+ 
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#06101b">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AVARIX">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png"></head>
 
 <body>
   <div class="shell">
@@ -237,6 +244,29 @@
 
   </div>
 
-  <script src="/static/app.js"></script>
+<script src="/static/app.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js", {
+        scope: "/"
+      })
+      .then(registration => {
+        console.log(
+          "AVARIX service worker registered:",
+          registration.scope
+        );
+      })
+      .catch(error => {
+        console.error(
+          "AVARIX service worker registration failed:",
+          error
+        );
+      });
+    });
+  }
+</script>
+
 </body>
 </html>
