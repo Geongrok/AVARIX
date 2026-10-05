@@ -1,6 +1,6 @@
-# Intellex
+# AVARIX
 
-**Intellex** is an AI-assisted technical research chatbot that searches a local knowledge base first, uses AeroCalc for explicit aerospace calculations, and falls back to web search when the local database cannot answer the question.
+**Avarix** is an AI-assisted technical research chatbot that searches a local knowledge base first, uses AeroCalc for explicit aerospace calculations, and falls back to web search when the local database cannot answer the question.
 
 > **Personal project · current stable line: v10.x**
 
@@ -72,7 +72,7 @@ Features
 Repository structure
 
 ```text
-Intellex/
+Avarix/
 ├── app/
 │   ├── main.py
 │   ├── chatbot.py
@@ -105,7 +105,7 @@ Intellex/
 └── run_web.py
 ```
 
-The separate React/Vite frontend and standalone AeroCalc web server are intentionally not included. Intellex uses one FastAPI process and one static UI, which makes the repository smaller and easier to deploy.
+The separate React/Vite frontend and standalone AeroCalc web server are intentionally not included. Avarix uses one FastAPI process and one static UI, which makes the repository smaller and easier to deploy.
 
 ## Setup
 
@@ -153,7 +153,7 @@ OPENROUTER_API_KEY=your_real_key_here
 
 **Never put the real key in Python, JavaScript, HTML, or GitHub source files.**
 
-### 4. Start Intellex
+### 4. Start Avarix
 
 ```bash
 python run_web.py
@@ -245,7 +245,7 @@ Images can also be processed when the optional OCR dependencies are available.
 
 ## Answer routing
 
-Intellex deliberately avoids letting AeroCalc hijack ordinary questions.
+Avarix deliberately avoids letting AeroCalc hijack ordinary questions.
 
 For example:
 
@@ -302,7 +302,7 @@ Example:
 For local development:
 
 ```text
-Browser → localhost:8000 → FastAPI → Intellex
+Browser → localhost:8000 → FastAPI → Avarix
 ```
 
 For a hosted deployment:
